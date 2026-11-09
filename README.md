@@ -44,3 +44,21 @@ tcg-app:latest                    b3cae30d2066        242MB         63.7MB
 ```
 
 ---
+
+## Question 3
+
+```bash
+docker pull hello-world
+```
+
+```text
+Using default tag: latest
+latest: Pulling from library/hello-world
+58dee6a49ef1: Pull complete 
+c3bdf82c34d1: Download complete 
+Digest: sha256:c567b231f65614688711a75f31518a064258a51d442117a3e771a3a8fdba78ef
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+```
+
+---
