@@ -105,3 +105,24 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 
 ---
+
+## Question 6
+
+```bash
+docker ps -a
+```
+
+```text
+CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS                     PORTS     NAMES
+3109f1bf5c0b   hello-world            "/hello"                 8 minutes ago   Exited (0) 5 minutes ago             silly_bell
+6492213834a2   rayns-v4-api           "sh -c 'python manag…"   6 days ago      Exited (137) 6 days ago              rayns-v4-api-1
+48d23b035e5a   postgres:17-alpine     "docker-entrypoint.s…"   6 days ago      Exited (0) 6 days ago                rayns-v4-db-1
+68195e55758e   redis:7.4-alpine       "docker-entrypoint.s…"   6 days ago      Exited (0) 6 days ago                rayns-v4-redis-1
+841968f6f778   rayns-v3-casino-loop   "python manage.py ca…"   11 days ago     Exited (137) 8 days ago              rayns-v3-casino-loop-1
+387bf6b84601   rayns-v3-api           "sh -c 'python manag…"   11 days ago     Exited (137) 8 days ago              rayns-v3-api-1
+42d91ad166a8   postgres:17-alpine     "docker-entrypoint.s…"   11 days ago     Exited (0) 8 days ago                rayns-v3-db-1
+58953cb7331f   redis:7.4-alpine       "docker-entrypoint.s…"   11 days ago     Exited (0) 8 days ago                rayns-v3-redis-1
+3ebe61ff2e44   postgres:17-alpine     "docker-entrypoint.s…"   4 weeks ago     Exited (0) 4 weeks ago               rayns-tcg-db-1
+```
+
+---
