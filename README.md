@@ -138,3 +138,14 @@ docker rm 3109f1bf5c0b
 ```
 
 ---
+
+## Question 8
+
+```bash
+docker rmi hello-world
+```
+
+```text
+Untagged: hello-world:latest
+Deleted: sha256:c567b231f65614688711a75f31518a064258a51d442117a3e771a3a8fdba78ef
+```
