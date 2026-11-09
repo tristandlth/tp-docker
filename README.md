@@ -93,3 +93,15 @@ For more examples and ideas, visit:
 ```
 
 ---
+
+## Question 5
+
+```bash
+docker ps
+```
+
+```text
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
+---
