@@ -126,3 +126,15 @@ CONTAINER ID   IMAGE                  COMMAND                  CREATED         S
 ```
 
 ---
+
+## Question 7
+
+```bash
+docker rm 3109f1bf5c0b
+```
+
+```text
+3109f1bf5c0b
+```
+
+---
