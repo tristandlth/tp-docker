@@ -233,3 +233,60 @@ docker rm mon_nginx
 ```text
 mon_nginx
 ```
+
+---
+
+## Exercice : Déploiement d'une application Python Flask
+
+### Build
+
+```bash
+docker build -t flask-hello .
+```
+
+```text
+[+] Building 11.0s (10/10) FINISHED                                                                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                              0.0s
+ => => transferring dockerfile: 199B                                                                                                                              0.0s
+ => [internal] load metadata for docker.io/library/python:3.12-slim                                                                                               1.8s
+ => [internal] load .dockerignore                                                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                                                   0.0s
+ => [1/5] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b                                         5.4s
+ => => resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b                                         0.0s
+ => => extracting sha256:acd43e9bebc37bc4ba7a5f47bd7598913337803e53d468f37d940f11f5d5f1ef                                                                         0.6s
+ => => sha256:70b4f81c82dc6ea2a5fc08c59c75940cc3f45dad8e2038b7773cd1b6ac24c7a0 249B / 249B                                                                        0.2s
+ => => sha256:0ba3a3e89cd986f09d548ebfd13261fd4ad86bb310bb69923010538e0c5ce222 12.06MB / 12.06MB                                                                  5.2s
+ => => sha256:0373269344dc260a94623aecbafee3cf336984ad3bbe8a49ac047d85aa69be9b 1.27MB / 1.27MB                                                                    0.9s
+ => => extracting sha256:0373269344dc260a94623aecbafee3cf336984ad3bbe8a49ac047d85aa69be9b                                                                         0.0s
+ => => extracting sha256:0ba3a3e89cd986f09d548ebfd13261fd4ad86bb310bb69923010538e0c5ce222                                                                         0.2s
+ => => extracting sha256:70b4f81c82dc6ea2a5fc08c59c75940cc3f45dad8e2038b7773cd1b6ac24c7a0                                                                         0.0s
+ => [internal] load build context                                                                                                                                 0.0s
+ => => transferring context: 456B                                                                                                                                 0.0s
+ => [2/5] WORKDIR /app                                                                                                                                            0.2s
+ => [3/5] COPY requirements.txt .                                                                                                                                 0.0s
+ => [4/5] RUN pip install --no-cache-dir -r requirements.txt                                                                                                      2.9s
+ => [5/5] COPY . .                                                                                                                                                0.0s
+ => exporting to image                                                                                                                                            0.7s
+ => => exporting layers                                                                                                                                           0.3s
+ => => exporting manifest sha256:6af0ffcbb87984bfbe9044ed24697725b1ceaefde9acdd7d58ee552960262c81                                                                 0.0s
+ => => exporting config sha256:7c7b2c19c2210fc1022a708e0953d31a375d6dbd3391d592905cca1db0ca0c1c                                                                   0.0s
+ => => exporting attestation manifest sha256:fa33b7799c26aa933b50f94cf48c68094085e5222f41b3634e36a5293da02297                                                     0.0s
+ => => exporting manifest list sha256:bbb2483666aab2418102538305c3acf7022e939b0df0ae30c6f19ee2888257ec                                                            0.0s
+ => => naming to docker.io/library/flask-hello:latest                                                                                                             0.0s
+ => => unpacking to docker.io/library/flask-hello:latest   
+```
+
+### Lancement du conteneur
+
+```bash
+docker run -d -p 5001:5000 flask-hello
+```
+
+```text
+5e934ce7348cce4f4988a5e5d80f4a9825a936c28e4d4084892420452f041e78
+```
+
+### Test de l'application depuis le navigateur
+
+L'application est bien lancé sur le port 5001 et affiche "Hello, World!".
+J'ai utilisé le port 5001 car je suis sur Mac et le port 5000 par défaut pour Flask est déjà utilisé par Airplay.
