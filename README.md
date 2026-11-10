@@ -1,5 +1,7 @@
 # TP Docker
 
+## Exercice : Manipulation de base des conteneurs
+
 ## Question 1
 
 ```bash
@@ -148,4 +150,86 @@ docker rmi hello-world
 ```text
 Untagged: hello-world:latest
 Deleted: sha256:c567b231f65614688711a75f31518a064258a51d442117a3e771a3a8fdba78ef
+```
+
+---
+
+## Exercice : Création d'un serveur web avec Docker
+
+## Question 1
+```bash
+docker pull nginx
+```
+
+```text
+Using default tag: latest
+latest: Pulling from library/nginx
+1f7e08c0f6ab: Pull complete 
+acd43e9bebc3: Pull complete 
+34a564bc5d28: Pull complete 
+3559a01b6a80: Pull complete 
+c64233207369: Pull complete 
+c19b54656735: Pull complete 
+998fb033610b: Pull complete 
+986a63116111: Download complete 
+61b74d3d884f: Download complete 
+Digest: sha256:165ddde8751e75a1c907d24ef10d9f6deb08b57e0fe56caf67512486aff76d82
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+```
+---
+
+## Question 2
+
+```bash
+docker run -d -p 8080:80 --name mon_nginx nginx
+```
+
+```text
+f75cbdef37e34c16999f60646efb0c95805424260f75b3020e58caf3acb97a98
+```
+
+---
+
+## Question 3
+
+```bash
+docker run -d -p 8080:80 --name mon_nginx nginx
+```
+
+```text
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                     NAMES
+f75cbdef37e3   nginx     "/docker-entrypoint.…"   43 seconds ago   Up 42 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   mon_nginx
+```
+
+---
+
+## Question 4
+
+La page est accessible et affiche : "Welcome to nginx!".
+
+---
+
+## Question 5
+
+```bash
+docker stop mon_nginx
+```
+
+```text
+mon_nginx
+```
+
+Il n'apparaît plus dans ```docker ps``` donc il a bien été arrêté.
+
+---
+
+## Question 6
+
+```bash
+docker rm mon_nginx
+```
+
+```text
+mon_nginx
 ```
