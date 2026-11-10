@@ -290,3 +290,51 @@ docker run -d -p 5001:5000 flask-hello
 
 L'application est bien lancé sur le port 5001 et affiche "Hello, World!".
 J'ai utilisé le port 5001 car je suis sur Mac et le port 5000 par défaut pour Flask est déjà utilisé par Airplay.
+
+---
+
+## Exercice : Utilisation de docker compose
+
+### Lancement du docker compose
+
+```bash
+docker compose up -d --build
+```
+
+```text
+[+] Building 0.8s (12/12) FINISHED                                                                                                                                     
+ => [internal] load local bake definitions                                                                                                                        0.0s
+ => => reading from stdin 596B                                                                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                                                                              0.0s
+ => => transferring dockerfile: 199B                                                                                                                              0.0s
+ => [internal] load metadata for docker.io/library/python:3.12-slim                                                                                               0.6s
+ => [internal] load .dockerignore                                                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                                                   0.0s
+ => [1/5] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b                                         0.0s
+ => => resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b                                         0.0s
+ => [internal] load build context                                                                                                                                 0.0s
+ => => transferring context: 389B                                                                                                                                 0.0s
+ => CACHED [2/5] WORKDIR /app                                                                                                                                     0.0s
+ => CACHED [3/5] COPY requirements.txt .                                                                                                                          0.0s
+ => CACHED [4/5] RUN pip install --no-cache-dir -r requirements.txt                                                                                               0.0s
+ => [5/5] COPY . .                                                                                                                                                0.0s
+ => exporting to image                                                                                                                                            0.0s
+ => => exporting layers                                                                                                                                           0.0s
+ => => exporting manifest sha256:9a6c972ce528621f2fbce8673e32fc74e28994ca3fbb0a924e6d8184e0f7a4b5                                                                 0.0s
+ => => exporting config sha256:18a0876e92f9067f8f0dcf1be16f6fc7b59b4a35ba76ba6f1749f3b8730916d1                                                                   0.0s
+ => => exporting attestation manifest sha256:059319206a7614ef4a069c5f2631a51c4b43796e2e5bca8166a2fefecd52a759                                                     0.0s
+ => => exporting manifest list sha256:188266407094fc582a90218ccfc72f8b27e4c2dad74f031ce1d1afa6c6bfeccc                                                            0.0s
+ => => naming to docker.io/library/flask-docker-web:latest                                                                                                        0.0s
+ => => unpacking to docker.io/library/flask-docker-web:latest                                                                                                     0.0s
+ => resolving provenance for metadata file                                                                                                                        0.0s
+[+] up 4/4
+ ✔ Image flask-docker-web         Built                                                                                                                            0.9s
+ ✔ Volume flask-docker_mongo-data Created                                                                                                                          0.0s
+ ✔ Container flask-docker-mongo-1 Started                                                                                                                          3.3s
+ ✔ Container flask-docker-web-1   Started
+```
+
+### Vérification de la connexion à la base de données
+
+J'ai ajouté une route /db sur l'application Flask qui doit renvoyer ```Connexion MongoDB OK``` dans le cas où la connexion fonctionne.
+Lorsque je me rends sur localhost:5001/db, la connexion fonctionne.
