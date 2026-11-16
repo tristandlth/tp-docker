@@ -64,3 +64,38 @@ J'ai fait une étape à la fois, avec un commit par étape et une mesure de la t
 - `NODE_ENV=production` et `USER node` à la place de root.
 - `EXPOSE 3000` uniquement.
 - Impact : **218 MB à 199 MB** et le conteneur ne tourne plus en root.
+
+## 3. Dockerfile final
+
+```dockerfile
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:20-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package*.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+COPY --from=build --chown=node:node /app/server.js ./
+EXPOSE 3000
+USER node
+CMD ["node", "server.js"]
+```
+
+## 4. Résultat
+
+- La taille passe de **1.88 GB à 199 MB**.
+- Les rebuilds sont plus rapides grâce au cache.
+- Le conteneur ne tourne plus en root.
+
+Pour lancer l'image :
+
+```bash
+cd tpdockeroptimisation
+docker build -t tp-node:final .
+docker run -p 3000:3000 tp-node:final
+```
