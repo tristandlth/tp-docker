@@ -39,6 +39,7 @@ J'ai fait une étape à la fois, avec un commit par étape et une mesure de la t
 | v1 | Image `alpine` et `.dockerignore` | 223 MB |
 | v2 | Ordre des instructions (cache) | 223 MB |
 | v3 | Multi-stage et `npm ci --omit=dev` | 218 MB |
+| v4 | Sans `mongodb`, `NODE_ENV=production`, utilisateur `node` | 199 MB |
 
 ### v1 : image légère et `.dockerignore`
 
@@ -56,3 +57,10 @@ J'ai fait une étape à la fois, avec un commit par étape et une mesure de la t
 
 - L'étape `build` installe tout et l'image finale ne reçoit que `server.js`.
 - Impact : **223 MB à 218 MB**. Le gain est faible car l'application est minuscule.
+
+### v4 : dépendances et sécurité
+
+- J'ai retiré `mongodb`, qui n'est jamais utilisé dans `server.js`.
+- `NODE_ENV=production` et `USER node` à la place de root.
+- `EXPOSE 3000` uniquement.
+- Impact : **218 MB à 199 MB** et le conteneur ne tourne plus en root.
