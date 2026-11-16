@@ -37,6 +37,7 @@ J'ai fait une étape à la fois, avec un commit par étape et une mesure de la t
 |---|---|---|
 | v0 | Dockerfile de départ | 1.88 GB |
 | v1 | Image `alpine` et `.dockerignore` | 223 MB |
+| v2 | Ordre des instructions (cache) | 223 MB |
 
 ### v1 : image légère et `.dockerignore`
 
@@ -44,3 +45,8 @@ J'ai fait une étape à la fois, avec un commit par étape et une mesure de la t
 - J'ai supprimé `build-essential` et le `COPY node_modules`.
 - J'ai ajouté un `.dockerignore` (`node_modules`, `.git`).
 - Impact : **1.88 GB à 223 MB**.
+
+### v2 : cache des layers
+
+- `package*.json` est copié avant le code, puis `npm ci`, puis `COPY . .`.
+- Impact : la taille ne change pas, mais après une modification de `server.js` le rebuild passe de 3 secondes à moins d'1 seconde car les dépendances restent en cache.
