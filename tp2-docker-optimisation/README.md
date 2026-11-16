@@ -38,6 +38,7 @@ J'ai fait une étape à la fois, avec un commit par étape et une mesure de la t
 | v0 | Dockerfile de départ | 1.88 GB |
 | v1 | Image `alpine` et `.dockerignore` | 223 MB |
 | v2 | Ordre des instructions (cache) | 223 MB |
+| v3 | Multi-stage et `npm ci --omit=dev` | 218 MB |
 
 ### v1 : image légère et `.dockerignore`
 
@@ -50,3 +51,8 @@ J'ai fait une étape à la fois, avec un commit par étape et une mesure de la t
 
 - `package*.json` est copié avant le code, puis `npm ci`, puis `COPY . .`.
 - Impact : la taille ne change pas, mais après une modification de `server.js` le rebuild passe de 3 secondes à moins d'1 seconde car les dépendances restent en cache.
+
+### v3 : multi-stage
+
+- L'étape `build` installe tout et l'image finale ne reçoit que `server.js`.
+- Impact : **223 MB à 218 MB**. Le gain est faible car l'application est minuscule.
